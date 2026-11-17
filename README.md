@@ -4,7 +4,7 @@
 
 ## 🌐 網頁連結
 
-👉 [點此瀏覽網站](https://your-username.github.io/ai-learning-notes)
+👉 [點此瀏覽網站](https://github.com/fenflouie/ai-learning-notes)
 
 ## 📖 專案簡介
 
