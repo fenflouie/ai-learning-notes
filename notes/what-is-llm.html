@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>什麼是 LLM？大型語言模型入門 - AI 學習筆記</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1>📚 AI 學習筆記</h1>
+    <p>整理 AI、機器學習與程式設計的學習紀錄</p>
+    <a href="../index.html">← 回到首頁</a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Article Header -->
+    <div class="article-header">
+      <h1 class="article-title">什麼是 LLM？大型語言模型入門</h1>
+      <div class="article-info">
+        <span class="article-date">2026 年 11 月 15 日</span>
+        <div class="article-tags">
+          <span class="tag">LLM</span>
+          <span class="tag">基礎觀念</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-content">
+
+      <h2>什麼是大型語言模型（LLM）？</h2>
+      <p>大型語言模型（Large Language Model，簡稱 LLM）是一種基於深度學習的 AI 模型，透過大量文字資料進行訓練，能夠理解並生成自然語言文字。常見的 LLM 包括 OpenAI 的 GPT 系列、Google 的 Gemini、Anthropic 的 Claude 等。</p>
+
+      <div class="note-info">
+        <strong>ℹ️ 補充：</strong>「大型」指的是模型的參數量非常龐大，通常達到數十億甚至數兆個參數。
+      </div>
+
+      <h2>LLM 的運作原理</h2>
+      <p>LLM 的核心概念是<strong>「根據前文預測下一個字」</strong>。模型在訓練過程中閱讀了大量文本，學會了語言的統計規律。當你給它一段文字（稱為 Prompt），它會根據學到的規律，逐字生成最可能的回應。</p>
+
+      <h3>簡化的運作流程</h3>
+      <ol>
+        <li><strong>輸入（Input）</strong>：使用者提供一段文字提示（Prompt）</li>
+        <li><strong>分詞（Tokenization）</strong>：將文字切分成 Token（詞彙單元）</li>
+        <li><strong>模型推理（Inference）</strong>：模型計算每個可能的下一個 Token 的機率</li>
+        <li><strong>輸出（Output）</strong>：選擇機率最高的 Token，逐步組成回應</li>
+      </ol>
+
+      <div class="note-tip">
+        <strong>💡 提示：</strong>Token 不一定等於一個字。在中文中，一個字通常是 1-2 個 Token；在英文中，一個單字可能是 1-3 個 Token。
+      </div>
+
+      <h2>LLM 的主要應用</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>應用領域</th>
+            <th>說明</th>
+            <th>範例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>文字生成</td>
+            <td>撰寫文章、郵件、報告</td>
+            <td>ChatGPT、Claude</td>
+          </tr>
+          <tr>
+            <td>程式輔助</td>
+            <td>產生、解釋、除錯程式碼</td>
+            <td>GitHub Copilot、Cursor</td>
+          </tr>
+          <tr>
+            <td>翻譯</td>
+            <td>多語言互譯</td>
+            <td>Google Translate (AI 版)</td>
+          </tr>
+          <tr>
+            <td>摘要</td>
+            <td>將長文縮短為重點</td>
+            <td>NotebookLM</td>
+          </tr>
+          <tr>
+            <td>問答系統</td>
+            <td>回答知識性問題</td>
+            <td>Perplexity AI</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>用 Python 呼叫 LLM API</h2>
+      <p>以下是使用 OpenAI API 呼叫 GPT 模型的基本範例：</p>
+
+      <pre><code class="language-python">
+from openai import OpenAI
+
+client = OpenAI(api_key="your-api-key")
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "你是一個友善的 AI 助手。"},
+        {"role": "user", "content": "請用一句話解釋什麼是 LLM。"}
+    ]
+)
+
+print(response.choices[0].message.content)
+      </code></pre>
+
+      <div class="note-warning">
+        <strong>⚠️ 注意：</strong>請勿將 API Key 直接寫在程式碼中，建議使用環境變數來管理敏感資訊。
+      </div>
+
+      <h2>LLM 的限制</h2>
+      <ul>
+        <li><strong>幻覺（Hallucination）</strong>：LLM 可能會生成看起來正確但實際上錯誤的內容</li>
+        <li><strong>知識截止日</strong>：模型的知識有截止時間，不知道訓練資料之後發生的事</li>
+        <li><strong>上下文長度限制</strong>：一次能處理的文字量有限（雖然不斷增加中）</li>
+        <li><strong>推理能力</strong>：在複雜邏輯推理上可能犯錯</li>
+      </ul>
+
+      <h2>小結</h2>
+      <p>LLM 是目前 AI 領域最火熱的技術之一。理解它的基本原理和限制，可以幫助我們更有效地使用這些工具。在下一篇筆記中，我們會深入探討如何透過 Prompt Engineering 來提升 LLM 的輸出品質。</p>
+
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 AI 學習筆記 ｜ <a href="https://github.com/" target="_blank">GitHub</a></p>
+  </footer>
+
+</body>
+</html>

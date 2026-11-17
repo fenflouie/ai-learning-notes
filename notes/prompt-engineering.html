@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Engineering 實戰技巧 - AI 學習筆記</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1>📚 AI 學習筆記</h1>
+    <p>整理 AI、機器學習與程式設計的學習紀錄</p>
+    <a href="../index.html">← 回到首頁</a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Article Header -->
+    <div class="article-header">
+      <h1 class="article-title">Prompt Engineering 實戰技巧</h1>
+      <div class="article-info">
+        <span class="article-date">2026 年 11 月 16 日</span>
+        <div class="article-tags">
+          <span class="tag">Prompt</span>
+          <span class="tag">LLM</span>
+          <span class="tag">實作教學</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-content">
+
+      <h2>什麼是 Prompt Engineering？</h2>
+      <p>Prompt Engineering（提示工程）是指<strong>設計和優化給 AI 的指令</strong>，讓模型能產出更準確、更符合需求的回應。這不需要寫程式，但需要理解 LLM 的特性。</p>
+
+      <div class="note-info">
+        <strong>ℹ️ 補充：</strong>Prompt Engineering 被認為是使用 AI 工具最重要的技能之一，好的 Prompt 可以讓同一個模型的輸出品質天差地別。
+      </div>
+
+      <h2>五個核心技巧</h2>
+
+      <h3>1. 明確指定角色（Role）</h3>
+      <p>告訴 AI 它應該扮演什麼角色，可以大幅提升回應的專業度和相關性。</p>
+
+      <pre><code class="language-text">
+❌ 不好的 Prompt：
+「解釋量子力學」
+
+✅ 好的 Prompt：
+「你是一位物理學教授，請用國中生能理解的語言，
+解釋量子力學的基本概念，並舉一個生活中的例子。」
+      </code></pre>
+
+      <h3>2. 提供具體的格式要求</h3>
+      <p>明確告訴 AI 你想要的輸出格式，避免模糊的指令。</p>
+
+      <pre><code class="language-text">
+❌ 不好的 Prompt：
+「給我一些學 Python 的建議」
+
+✅ 好的 Prompt：
+「請列出 5 個學習 Python 的建議，格式如下：
+- 建議標題（粗體）
+- 一句話說明
+- 推薦的學習資源（附連結）」
+      </code></pre>
+
+      <h3>3. 給予範例（Few-shot Learning）</h3>
+      <p>提供幾個範例讓 AI 理解你期望的輸出模式。</p>
+
+      <pre><code class="language-text">
+請將以下技術名詞翻譯成中文並附上簡短解釋：
+
+範例：
+- Machine Learning → 機器學習：讓電腦從資料中學習規律的技術。
+- Deep Learning → 深度學習：使用多層神經網路的機器學習方法。
+
+請翻譯：
+- Natural Language Processing →
+- Computer Vision →
+- Reinforcement Learning →
+      </code></pre>
+
+      <h3>4. 使用分隔符號組織內容</h3>
+      <p>當 Prompt 包含多個部分時，使用分隔符號讓結構更清晰。</p>
+
+      <pre><code class="language-text">
+### 任務 ###
+請摘要以下文章的重點。
+
+### 要求 ###
+- 摘要長度：100 字以內
+- 語言：繁體中文
+- 格式：條列式
+
+### 文章內容 ###
+（貼上文章）
+      </code></pre>
+
+      <h3>5. 鏈式思考（Chain of Thought）</h3>
+      <p>要求 AI 一步步思考，可以提升推理任務的準確度。</p>
+
+      <pre><code class="language-text">
+❌ 直接問：
+「小明有 15 顆蘋果，給了小華 3 顆，又買了 7 顆，
+再給小美一半，最後剩幾顆？」
+
+✅ 加上思維鏈：
+「小明有 15 顆蘋果，給了小華 3 顆，又買了 7 顆，
+再給小美一半，最後剩幾顆？
+請一步一步計算，列出每一步的結果。」
+      </code></pre>
+
+      <div class="note-tip">
+        <strong>💡 提示：</strong>在較複雜的推理問題中，加上「Let's think step by step」或「請一步步思考」可以顯著提升正確率。
+      </div>
+
+      <h2>常見的 Prompt 框架</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>框架</th>
+            <th>組成</th>
+            <th>適用場景</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CRISPE</td>
+            <td>角色 + 背景 + 指令 + 風格 + 範例</td>
+            <td>複雜的內容生成</td>
+          </tr>
+          <tr>
+            <td>CO-STAR</td>
+            <td>背景 + 目標 + 風格 + 語調 + 受眾 + 回應格式</td>
+            <td>行銷文案、客服回覆</td>
+          </tr>
+          <tr>
+            <td>RISEN</td>
+            <td>角色 + 指令 + 步驟 + 結尾 + 收窄</td>
+            <td>結構化任務</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>實際範例：用 Prompt 寫程式</h2>
+      <p>以下是一個完整的 Prompt，用來請 AI 幫忙寫 Python 函式：</p>
+
+      <pre><code class="language-text">
+你是一位資深 Python 開發者。
+
+請幫我撰寫一個函式 `count_words(text)`，功能如下：
+- 輸入：一個字串 text
+- 輸出：一個字典，key 是單字（全小寫），value 是出現次數
+- 忽略標點符號
+- 包含完整的 docstring 和型別提示
+- 附上 3 個測試案例
+
+請使用 Python 3.10+ 語法。
+      </code></pre>
+
+      <p>AI 會回傳類似這樣的程式碼：</p>
+
+      <pre><code class="language-python">
+import re
+from collections import Counter
+
+
+def count_words(text: str) -> dict[str, int]:
+    """
+    計算字串中每個單字的出現次數。
+
+    Args:
+        text: 要分析的字串。
+
+    Returns:
+        一個字典，key 是全小寫的單字，value 是出現次數。
+    """
+    words = re.findall(r'[a-zA-Z]+', text.lower())
+    return dict(Counter(words))
+
+
+# 測試案例
+assert count_words("Hello hello world") == {"hello": 2, "world": 1}
+assert count_words("AI is great, AI is fun!") == {"ai": 2, "is": 2, "great": 1, "fun": 1}
+assert count_words("") == {}
+      </code></pre>
+
+      <div class="note-warning">
+        <strong>⚠️ 注意：</strong>AI 生成的程式碼不一定 100% 正確，使用前請務必自己測試和驗證。
+      </div>
+
+      <h2>小結</h2>
+      <p>Prompt Engineering 的核心在於<strong>清晰、具體、有結構</strong>。掌握這些技巧後，你可以更有效率地使用各種 AI 工具。多練習、多實驗，找到最適合你需求的 Prompt 寫法。</p>
+
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 AI 學習筆記 ｜ <a href="https://github.com/" target="_blank">GitHub</a></p>
+  </footer>
+
+</body>
+</html>
